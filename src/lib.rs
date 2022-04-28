@@ -31,7 +31,7 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>, max_a: usize, max_b: usize) 
     // let log_px_ind = jd * px_ind_pos.mapv(f32::log2);
     // let zerod_log_px_ind = log_px_ind.mapv(zero_inf);
     // let mi = zerod_log_px_ind.sum();
-    Ok(mi)
+    Ok(0.0)
 }
 
 /// A Python module implemented in Rust.
