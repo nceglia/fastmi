@@ -26,7 +26,19 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>) -> PyResult<f32> {
         }
     }
     let mut joint_distribution = Array2::<f32>::zeros((max_a+1, max_b+1));
+    let mut map = HashMap<usize, HashMap<usize, f32>>>
     let it = a.iter().zip(b.iter());
+    for a in 1..max_a {
+        for b in 1..max_b {
+            let mut count = 0.0;
+            for (_i,(&x,&y)) in it.enumerate() {
+                if x == a && y == b {
+                    count += 1.0;
+                }
+            }
+            joint_distribution[[x, y]] += count;
+        }
+    }
     for (_i,(&x,&y)) in it.enumerate() {
         if x != 0 && y != 0 {
             joint_distribution[[x, y]] += 1.0;
