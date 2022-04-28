@@ -17,7 +17,7 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>, max_a: usize, max_b: usize) 
     let it = a.iter().zip(b.iter());
     for (_i,(&x,&y)) in it.enumerate() {
         if x != 0 && y != 0 && x < max_a && y < max_b {
-            joint_distribution[[x, y]] += 1;
+            joint_distribution[[x, y]] += 1.0;
         }
     }
     let normalized_joint_distribution = &joint_distribution / joint_distribution.sum() as f32;
