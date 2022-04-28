@@ -53,7 +53,7 @@ fn mutual_information(matrix: Vec<Vec<usize>>) -> PyResult<f32> {
         println!("{:#?}",i);
         for j in 0..matrix.len() {
             if i != j {
-                let mut mi = calculate_mi(matrix[i].clone(),matrix[j].clone());
+                let mi = calculate_mi(matrix[i].clone(),matrix[j].clone());
             }
         }
     }
