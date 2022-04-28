@@ -35,7 +35,7 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>) -> PyResult<f32> {
                     count += 1.0;
                 }
             }
-            joint_distribution[[x, y]] += count;
+            joint_distribution[[a, b]] = count;
         }
     }
     for (_i,(&x,&y)) in it.enumerate() {
