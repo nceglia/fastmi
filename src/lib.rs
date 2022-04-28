@@ -2,6 +2,8 @@
 use pyo3::prelude::*;
 use ndarray::*;
 use ndarray::Array;
+use ndhistogram::{Histogram, axis::Axis, ndhistogram, axis::Uniform, axis::Category, value::Mean};
+
 
 fn zero_inf(value: f32) -> f32 {
     let mut ret = value;
@@ -11,8 +13,7 @@ fn zero_inf(value: f32) -> f32 {
     ret
 }
 
-#[pyfunction]
-fn mutual_information(a: Vec<usize>, b: Vec<usize>) -> PyResult<f32> {
+fn calculate_mi(a: Vec<usize>, b: Vec<usize>) -> f32 {
     let mut max_a = 0;
     for count in &a {
         if count > &max_a {
@@ -43,7 +44,19 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>) -> PyResult<f32> {
     let log_px_ind = jd * px_ind_pos.mapv(f32::log2);
     let zerod_log_px_ind = log_px_ind.mapv(zero_inf);
     let mi = zerod_log_px_ind.sum();
-    Ok(mi)
+    mi
+}
+
+fn mutual_information(matrix: Vec<Vec<usize>>) -> PyResult<f32> {
+    for i in 0..matrix.len() {
+        println!("{:#?}",i);
+        for j in 0..matrix.len() {
+            if i != j {
+                let mut mi = calculate_mi(matrix[i].clone(),matrix[j].clone());
+            }
+        }
+    }
+    Ok(0.0)
 }
 
 /// A Python module implemented in Rust.
