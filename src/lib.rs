@@ -2,7 +2,6 @@
 use pyo3::prelude::*;
 use ndarray::*;
 use ndarray::Array;
-use ndhistogram::{Histogram, axis::Axis, ndhistogram, axis::Uniform, axis::Category, value::Mean};
 
 
 fn zero_inf(value: f32) -> f32 {
