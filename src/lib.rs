@@ -13,23 +13,12 @@ fn zero_inf(value: f32) -> f32 {
 
 #[pyfunction]
 fn mutual_information(a: Vec<usize>, b: Vec<usize>, max_a: usize, max_b: usize) -> PyResult<f32> {
-    // assert!(a.len() == b.len());
-    // let mut max_a = 0;
-    // for count in &a {
-    //     if count > &max_a {
-    //         max_a = *count;
-    //     }
-    // }
-    // let mut max_b = 0;
-    // for count in &b {
-    //     if count > &max_b {
-    //         max_b = *count;
-    //     }
-    // }
     let mut joint_distribution = Array2::<f32>::zeros((max_a+1, max_b+1));
     let it = a.iter().zip(b.iter());
     for (_i,(&x,&y)) in it.enumerate() {
-         joint_distribution[[x, y]] += 1.0;
+         if x != 0 && y != 0 {
+             joint_distribution[[x, y]] += 1.0;
+         }
     }
     let normalized_joint_distribution = &joint_distribution / joint_distribution.sum() as f32;
     let jd = normalized_joint_distribution.clone();
