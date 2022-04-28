@@ -46,6 +46,7 @@ fn calculate_mi(a: Vec<usize>, b: Vec<usize>) -> f32 {
     mi
 }
 
+#[pyfunction]
 fn mutual_information(matrix: Vec<Vec<usize>>) -> PyResult<f32> {
     for i in 0..matrix.len() {
         println!("{:#?}",i);
