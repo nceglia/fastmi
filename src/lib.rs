@@ -38,11 +38,6 @@ fn mutual_information(a: Vec<usize>, b: Vec<usize>) -> PyResult<f32> {
         }
         joint_distribution[[x, y]] = count;
     }
-    for (_i,(&x,&y)) in it.enumerate() {
-        if x != 0 && y != 0 {
-            joint_distribution[[x, y]] += 1.0;
-        }
-    }
     let normalized_joint_distribution = &joint_distribution / joint_distribution.sum() as f32;
     let jd = normalized_joint_distribution.clone();
     let py = normalized_joint_distribution.sum_axis(Axis(0)).to_vec();
